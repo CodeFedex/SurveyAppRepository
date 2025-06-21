@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.admin.AdminDashboardActivity"
+    android:padding="16dp">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/adminWelcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/admin_welcome_text"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:gravity="center"/>
+
+    <!-- Botón: Gestionar encuestas -->
+    <Button
+        android:id="@+id/manageSurveysButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="320dp"
+        android:text="@string/manage_surveys_button"
+        app:layout_constraintTop_toBottomOf="@id/adminWelcomeText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"
+        android:padding="10dp"/>
+
+    <!-- Botón: Visualizar estadísticas -->
+    <Button
+        android:id="@+id/viewStatisticsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="320dp"
+        android:text="@string/view_statistics_button"
+        app:layout_constraintTop_toBottomOf="@id/manageSurveysButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:padding="10dp"/>
+
+    <!-- Botón: Administrar usuarios -->
+    <Button
+        android:id="@+id/manageUsersButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="320dp"
+        android:text="@string/manage_users_button"
+        app:layout_constraintTop_toBottomOf="@id/viewStatisticsButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:padding="10dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

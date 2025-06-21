@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">SurveyApp</string>
+    <string name="username_hint">Usuario</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="login_button_text">Iniciar sesión</string>
+    <string name="logo_desc">Logo Eva Pueblo</string>
+    <string name="admin_welcome_text">Bienvenido, Compañero Administrador</string>
+    <string name="manage_surveys_button">Gestionar Encuestas</string>
+    <string name="view_statistics_button">Ver Estadísticas</string>
+    <string name="manage_users_button">Administrar Usuarios</string>
+    <string name= "completed_forms_button">Formularios Realizados</string>
+    <string name= "surveys_button">Encuestas</string>
+    <string name= "completed_forms_title">Formularios Completados</string>
+    <string name= "send_to_database_button">Enviar a Base de Datos</string>
+    <string name= "dashboard_summary">Resumen</string>
+    <string name="send_to_database">Enviar a Base de Datos</string>
+    <string name="default_form_name">Formulario_2025_01.json</string>
+
+
+
+
+    </resources>
