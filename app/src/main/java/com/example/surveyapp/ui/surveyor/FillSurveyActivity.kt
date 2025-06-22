@@ -13,7 +13,6 @@ class FillSurveyActivity : AppCompatActivity() {
     private lateinit var questionsContainer: LinearLayout
     private lateinit var btnSaveForm: Button
 
-    // Modelos básicos
     data class Question(val id: String, val text: String, val type: String)
     data class Survey(val title: String, val questions: List<Question>)
 
@@ -27,20 +26,40 @@ class FillSurveyActivity : AppCompatActivity() {
         questionsContainer = findViewById(R.id.questionsContainer)
         btnSaveForm = findViewById(R.id.btnSaveForm)
 
-        // Encuesta de prueba (reemplazá luego por encuesta real recibida por Intent)
-        currentSurvey = Survey(
-            title = "Encuesta de Satisfacción",
-            questions = listOf(
-                Question("q1", "¿Cómo calificarías el servicio?", "text"),
-                Question("q2", "¿Volverías a usar el servicio?", "boolean")
-            )
-        )
+        // 📥 Recibir JSON desde el Intent
+        val jsonString = intent.getStringExtra("survey_json")
+        if (jsonString == null) {
+            Toast.makeText(this, "No se pudo cargar la encuesta", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
 
+        currentSurvey = parseSurveyFromJson(jsonString)
         renderSurvey(currentSurvey)
 
         btnSaveForm.setOnClickListener {
             saveForm()
         }
+    }
+
+    private fun parseSurveyFromJson(json: String): Survey {
+        val jsonObj = JSONObject(json)
+        val title = jsonObj.getString("title")
+        val questionsJson = jsonObj.getJSONArray("questions")
+        val questions = mutableListOf<Question>()
+
+        for (i in 0 until questionsJson.length()) {
+            val q = questionsJson.getJSONObject(i)
+            questions.add(
+                Question(
+                    id = q.getString("id"),
+                    text = q.getString("text"),
+                    type = q.getString("type")
+                )
+            )
+        }
+
+        return Survey(title, questions)
     }
 
     private fun renderSurvey(survey: Survey) {
@@ -66,7 +85,6 @@ class FillSurveyActivity : AppCompatActivity() {
                     }
                     questionsContainer.addView(switch)
                 }
-                // Podés agregar más tipos aquí, como select, radio, etc.
             }
         }
     }
@@ -87,14 +105,15 @@ class FillSurveyActivity : AppCompatActivity() {
             }
         }
 
-        val respuestasJson = JSONObject(answersMap as Map<*, *>).toString()
+        val respuestas = JSONObject()
+        respuestas.put("title", currentSurvey.title)
+        respuestas.put("answers", JSONObject(answersMap as Map<*, *>))
+
         val fileName = "respuesta_${System.currentTimeMillis()}.json"
         val file = File(filesDir, fileName)
-        file.writeText(respuestasJson)
+        file.writeText(respuestas.toString())
 
-        Toast.makeText(this, "Formulario guardado como $fileName", Toast.LENGTH_SHORT).show()
-
-        // Recargar encuesta vacía
-        renderSurvey(currentSurvey)
+        Toast.makeText(this, "Formulario guardado", Toast.LENGTH_SHORT).show()
+        finish() // Cerramos la pantalla tras guardar
     }
 }

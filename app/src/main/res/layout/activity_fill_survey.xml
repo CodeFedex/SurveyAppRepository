@@ -25,8 +25,9 @@
             android:id="@+id/btnSaveForm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Guardar Formulario"
+            android:text="@string/guardar_formulario"
             android:layout_gravity="center_horizontal"
             android:padding="12dp" />
     </LinearLayout>
 </ScrollView>
+

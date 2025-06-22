@@ -15,8 +15,9 @@
     <string name= "dashboard_summary">Resumen</string>
     <string name="send_to_database">Enviar a Base de Datos</string>
     <string name="default_form_name">Formulario_2025_01.json</string>
+    <string name="guardar_formulario">Guardar Formulario</string>
+    <string name="available_surveys">Encuestas disponibles</string>
+    <string name="survey_title_placeholder">Título de encuesta</string>
 
 
-
-
-    </resources>
+</resources>
