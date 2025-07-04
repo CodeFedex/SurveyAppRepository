@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.surveyapp.databinding.ItemCompletedFormBinding
 
 class CompletedFormsAdapter(
-    private val forms: List<String>,
+    private var forms: List<String>,
     private val selectedForms: MutableSet<String>
 ) : RecyclerView.Adapter<CompletedFormsAdapter.FormViewHolder>() {
 
@@ -27,6 +27,9 @@ class CompletedFormsAdapter(
 
         fun bind(formName: String) {
             binding.tvFormName.text = formName
+
+            // Evitar que se dispare el listener al reciclar views
+            binding.cbSelectForm.setOnCheckedChangeListener(null)
             binding.cbSelectForm.isChecked = selectedForms.contains(formName)
 
             binding.cbSelectForm.setOnCheckedChangeListener { _, isChecked ->
@@ -37,5 +40,10 @@ class CompletedFormsAdapter(
                 }
             }
         }
+    }
+
+    fun updateData(newForms: List<String>) {
+        this.forms = newForms
+        notifyDataSetChanged()
     }
 }

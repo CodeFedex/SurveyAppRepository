@@ -4,15 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp">
+    android:padding="12dp"
+    android:background="?attr/selectableItemBackground">
 
-    <!-- Nombre del archivo o ID del formulario -->
+    <!-- Nombre del formulario -->
     <TextView
         android:id="@+id/tvFormName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/default_form_name"
+        android:text="@string/form_name_placeholder"
         android:textSize="16sp"
+        android:textColor="@android:color/black"
         android:ellipsize="end"
         android:maxLines="1"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +28,7 @@
         android:id="@+id/cbSelectForm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/select_form_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

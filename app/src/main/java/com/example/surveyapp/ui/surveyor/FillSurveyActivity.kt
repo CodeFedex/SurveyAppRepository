@@ -26,7 +26,6 @@ class FillSurveyActivity : AppCompatActivity() {
         questionsContainer = findViewById(R.id.questionsContainer)
         btnSaveForm = findViewById(R.id.btnSaveForm)
 
-        // 📥 Recibir JSON desde el Intent
         val jsonString = intent.getStringExtra("survey_json")
         if (jsonString == null) {
             Toast.makeText(this, "No se pudo cargar la encuesta", Toast.LENGTH_LONG).show()
@@ -109,11 +108,19 @@ class FillSurveyActivity : AppCompatActivity() {
         respuestas.put("title", currentSurvey.title)
         respuestas.put("answers", JSONObject(answersMap as Map<*, *>))
 
-        val fileName = "respuesta_${System.currentTimeMillis()}.json"
-        val file = File(filesDir, fileName)
-        file.writeText(respuestas.toString())
+        val dir = File(filesDir, "completed_forms")
+        if (!dir.exists()) dir.mkdirs()
 
-        Toast.makeText(this, "Formulario guardado", Toast.LENGTH_SHORT).show()
-        finish() // Cerramos la pantalla tras guardar
+        val fileName = "respuesta_${System.currentTimeMillis()}.json"
+        val file = File(dir, fileName)
+
+        try {
+            file.writeText(respuestas.toString())
+            Toast.makeText(this, "Formulario guardado", Toast.LENGTH_SHORT).show()
+            finish()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "Error al guardar el formulario", Toast.LENGTH_SHORT).show()
+        }
     }
 }
