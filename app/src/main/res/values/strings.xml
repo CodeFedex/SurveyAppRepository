@@ -20,6 +20,7 @@
     <string name="survey_title_placeholder">Título de encuesta</string>
     <string name="form_name_placeholder">Nombre del formulario</string>
     <string name="select_form_description">Seleccionar formulario</string>
+    <string name="delete_selected">Eliminar seleccionados</string>
 
 
 </resources>
